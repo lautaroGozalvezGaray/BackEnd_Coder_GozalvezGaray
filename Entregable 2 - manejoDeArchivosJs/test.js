@@ -8,7 +8,16 @@ const test = async()=>{
     const id3 = await contenedor.save({title: "fibron", price: 350});
     
 
-    console.log(id1, id2,id3)
+    /* console.log(id1, id2,id3); */
+
+    /* await contenedor.deleteById(1) */
+
+    /* const allObjet = await contenedor.getAll();
+    console.log(allObjet);
+ */
+
+    /* await contenedor.deleteAll() */
+    
 
 
 }
