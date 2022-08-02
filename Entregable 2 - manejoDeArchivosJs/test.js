@@ -8,15 +8,18 @@ const test = async()=>{
     const id3 = await contenedor.save({title: "fibron", price: 350});
     
 
-    /* console.log(id1, id2,id3); */
+    console.log(id1, id2,id3); //[{"title": "goma","price": 50,"id": 1},{"title": "cartuchera","price": 1599,"id": 2},{"title": "fibron","price": 350,"id": 3}]
 
-    /* await contenedor.deleteById(1) */
+    /* await contenedor.deleteById(2) */ // {"title": "cartuchera","price": 1599,"id": 2}
 
-    /* const allObjet = await contenedor.getAll();
-    console.log(allObjet);
- */
+    /* const allObjet = await contenedor.getAll(); //[{"title": "goma","price": 50,"id": 1},{"title": "fibron","price": 350,"id": 3}]
+    console.log(allObjet); */
+ 
 
-    /* await contenedor.deleteAll() */
+    /* const Objet = await contenedor.getById(1);
+    console.log(Objet); */ //{"title": "goma","price": 50,"id": 1}
+
+    /* await contenedor.deleteAll() */ 
     
 
 

@@ -4,24 +4,6 @@ class Contenedor{
     
     constructor(file){
         this.file = file;
-        this.readOrCreateFile()
-    }
-
-    async readOrCreateFile() {
-        try {
-          await fs.promises.readFile(this.file, "utf-8");
-        } catch (error) {
-          error.code === "ENOENT"
-            ? this.createEmptyFile()
-            : console.log(
-                `Error Code: ${error.code} | There was an unexpected error when trying to read ${this._filename}`
-            );
-        }
-      }
-
-    async createEmptyFile(){
-        let result = []
-        fs.promises.writeFile(this.file, JSON.stringify(result, null ,2))
     }
 
     async getData(){
@@ -31,35 +13,32 @@ class Contenedor{
 
     async save(objet){
         try {
-            const allData = await this.getData();
-            const parseData = JSON.parse(allData);
+            const data = await fs.promises.readFile(this.file, "utf-8");
+            const parseData = JSON.parse(data);
 
             objet.id = parseData.length + 1 ;
             parseData.push(objet);
 
-            await fs.promises.writeFile(this.file, JSON.stringify(parseData));
+            await fs.promises.writeFile(this.file, JSON.stringify(parseData, null, 2));
             
             return objet.id;
 
         } catch (error) {
-            /* throw new Error(`hubo un error al intentar guardar el objeto. mensaje: ${error.message}`)  */
-            console.log(
-                `Error Code: ${error.message}`
-              );
+            throw new Error(`hubo un error al intentar guardar el objeto. mensaje: ${error.message}`);
         }
 
     }
 
     async getById(id){
         try {
-            const data = await this.getData();
-            parseData = JSON.parse(data);
-
-            return parseData.find((product)=>{product.id === id });
+          const data = await this.getData();
+          const parsedData = JSON.parse(data);
+    
+          return parsedData.find((producto) => producto.id === id);
         } catch (error) {
             throw new Error(`no se encontro el objeto con id: ${id}. mensaje: ${error.message}`);
         }
-    }
+      }
 
     async getAll(){
         const data = await this.getData();
