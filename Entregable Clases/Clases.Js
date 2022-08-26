@@ -30,9 +30,10 @@ class Usuario{
 
 const lautaro = new Usuario("lautaro", "gozalvez", [{nombre: "Principito", autor: "Antoine de Saint-Exupéry"}], ["negra"]);
 
-lautaro.addMascota("filomena");
+/* console.log(lautaro.getFullName());
+console.log(lautaro); */
 lautaro.addBooks("libro2", "marcos")
-console.log(lautaro);
+lautaro.addMascota("filomena");
 console.log(lautaro.countMascotas());
 console.log(lautaro.getBooksName())
 
