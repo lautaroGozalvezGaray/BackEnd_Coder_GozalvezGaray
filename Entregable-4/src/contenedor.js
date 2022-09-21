@@ -23,7 +23,7 @@ module.exports = class Contenedor{
             }
 
         } catch (error) {
-            throw new Error(`hubo un error al intentar guardar el objeto. mensaje: ${error.message}`);
+            throw new Error(`There was an error trying to save the object: ${error.message}`);
         }
 
     }
@@ -33,7 +33,7 @@ module.exports = class Contenedor{
           const data = await this.getData();
           return data.find(producto => producto.id == id);
         } catch (error) {
-            throw new Error(`no se encontro el objeto con id: ${id}. mensaje: ${error.message}`);
+            throw new Error(`the object was not found with id: ${id}. mensaje: ${error.message}`);
         }
     }
 
@@ -80,14 +80,14 @@ module.exports = class Contenedor{
                 data.splice(index, 1);
                 await fs.promises.writeFile(this.file, JSON.stringify(data));
             }else{
-                console.log(`el objeto con id ${id} no existe`);
+                console.log(`The objet whit id:  ${id} does not exist`);
                 return null;
             }
 
 
 
         } catch (error) {
-            throw new Error(`ocurrio un error al eliminar le obj. error: ${error.message}`);
+            throw new Error(`There was an error trying to delete the obj. error: ${error.message}`);
         }
     }
 
@@ -95,7 +95,7 @@ module.exports = class Contenedor{
         try {
             await fs.promises.writeFile(this.file,JSON.stringify([],null,2));
         } catch (error) {
-            return `No se pueden borrar los datos`;
+            return `data cannot be deleted`;
         }
     } 
 
