@@ -1,0 +1,26 @@
+[
+  {
+    "title": "producto 1 MODIFICADO",
+    "price": "1500",
+    "thumbnail": "https://example.com",
+    "id": 1
+  },
+  {
+    "title": "producto 2",
+    "price": "853",
+    "thumbnail": "https://example.com",
+    "id": 2
+  },
+  {
+    "title": "producto 3",
+    "price": "2548",
+    "thumbnail": "https://example.com",
+    "id": 3
+  },
+  {
+    "title": "producto 4",
+    "price": "658",
+    "thumbnail": "https://example.com",
+    "id": 4
+  }
+]
