@@ -1,0 +1,20 @@
+[
+  {
+    "title": "mochila",
+    "price": "3484",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-512.png",
+    "id": 1
+  },
+  {
+    "title": "lapiz",
+    "price": "251",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-512.png",
+    "id": 2
+  },
+  {
+    "title": "calculadora",
+    "price": "339",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png",
+    "id": 3
+  }
+]

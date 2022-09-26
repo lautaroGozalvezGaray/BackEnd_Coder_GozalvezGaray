@@ -1,0 +1,23 @@
+html 
+    head
+        title='Lista de productos'
+    body
+        nav
+            a(href='/') Formulario
+
+        h1='Lista de productos'
+        hr
+        if products.length>0
+            table 
+                tr 
+                    th='Nombre'
+                    th='Precio'
+                    th='Imagen'
+                for producto in products
+                    tr
+                        td=producto.title
+                        td=producto.price
+                        td 
+                            img(src=producto.thumbnail, height="25px")
+        else 
+            h2="No hay productos"

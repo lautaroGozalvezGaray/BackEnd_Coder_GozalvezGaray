@@ -1,0 +1,2 @@
+En mi caso elijo ejs y handlebars ya que se mantiene el formato de escritura de html con sus etiquetas para abrir y cerrar sin importar mucho
+la identacion lo que hace que sea mas facil y practico.

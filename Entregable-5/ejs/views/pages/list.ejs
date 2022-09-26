@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lista de productos</title>
+</head>
+    <body>
+
+        <%- include("../partials/navLink.ejs")      %>
+
+        <h1>Lista de productos</h1>
+
+        <% if (products.length > 0) { %>
+        
+    
+            <table>
+    
+                
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>foto</th>
+                </tr>
+
+                <% products.forEach(function(product){ %>
+
+                    <tr>
+                        <td><%= product.title %></td>
+                        <td><%= product.price %> </td>
+                        <td><img src=<%= product.thumbnail %> height="25px "></td>
+                    </tr>
+                    
+                <% }) %>
+
+            </table>
+            
+    
+    
+        <%} else {%>
+            <p>No hay productos<p>
+        <%}%>
+    </body>
+    
+</html>
