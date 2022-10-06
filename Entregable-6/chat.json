@@ -1,0 +1,20 @@
+[
+  {
+    "email": "lautaro@gmail.com",
+    "message": "hola, queria hacer una consulta",
+    "date": "5/10/2022, 16:28:07",
+    "id": 1
+  },
+  {
+    "email": "negocio@gmail.com",
+    "message": "Buenas tardes, cual es tu consulta?",
+    "date": "5/10/2022, 16:28:39",
+    "id": 2
+  },
+  {
+    "email": "lautaro@gmail.com",
+    "message": "como puedo realizar una compra?",
+    "date": "6/10/2022, 08:52:15",
+    "id": 3
+  }
+]

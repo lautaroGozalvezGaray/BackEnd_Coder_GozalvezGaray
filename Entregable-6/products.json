@@ -1,0 +1,26 @@
+[
+  {
+    "title": "calculadora",
+    "price": "15000",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png",
+    "id": 1
+  },
+  {
+    "title": "lapiz",
+    "price": "264",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-512.png",
+    "id": 2
+  },
+  {
+    "title": "Mochila",
+    "price": "87000",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-512.png",
+    "id": 3
+  },
+  {
+    "title": "calculadora plus 2.5",
+    "price": "90000",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png",
+    "id": 4
+  }
+]
