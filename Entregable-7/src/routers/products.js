@@ -7,6 +7,7 @@ const routerProducts = express.Router();
 //variable admin
 const isAdmin = true;
 
+//TRAER TODOS LOS PRODUCTOS
 
 routerProducts.get("/", async(req, res) => {
     
@@ -25,10 +26,10 @@ routerProducts.get("/", async(req, res) => {
     
 })
 
+//TRAER UN PRODUCTO MEDIANTE ID
 routerProducts.get("/:id", async(req, res) => {
-    const {id} = req.params;
     try {
-        const product = await contenedor.getById(id);
+        const product = await contenedor.getById(req.params.id);
         product 
           ? res.status(200).json(product)
           : res.status(404).json({error: `The product whit ID: ${id} was not found`});
@@ -40,6 +41,8 @@ routerProducts.get("/:id", async(req, res) => {
     
 })
 
+
+//AGREGAR UN PRODUCTO
 routerProducts.post("/", async(req, res) => {
     if(isAdmin == true){
         const productBody = req.body;
@@ -58,6 +61,7 @@ routerProducts.post("/", async(req, res) => {
     
 })
 
+//ELIMINAR UN PRODUCTO
 routerProducts.delete("/:id", async(req, res) => {
 
     if(isAdmin == true){
@@ -79,6 +83,7 @@ routerProducts.delete("/:id", async(req, res) => {
 
 })
 
+//MODIFICAR UN PRODUCTO
 routerProducts.put("/:id", async(req, res) => {
     if(isAdmin == true){
         const {id} = req.params;
