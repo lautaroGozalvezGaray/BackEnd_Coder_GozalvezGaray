@@ -1,0 +1,42 @@
+[
+  {
+    "timestamp": "October 12th 2022, 9:21:37 am",
+    "title": "Product 1",
+    "price": 25,
+    "description": "Some description",
+    "code": "PROD-002",
+    "image": "Url.com",
+    "stock": 24,
+    "id": 1
+  },
+  {
+    "timestamp": "October 12th 2022, 9:21:37 am",
+    "title": "Product 2",
+    "price": 258,
+    "description": "Some description",
+    "code": "PROD-002",
+    "image": "Url.com",
+    "stock": 5,
+    "id": 2
+  },
+  {
+    "timestamp": "October 12th 2022, 9:21:37 am",
+    "title": "Product 3",
+    "price": 2226,
+    "description": "Some description",
+    "code": "PROD-002",
+    "image": "Url.com",
+    "stock": 10,
+    "id": 3
+  },
+  {
+    "timestamp": "October 12th 2022, 9:21:37 am",
+    "title": "Product 4",
+    "price": 3000,
+    "description": "Some description",
+    "code": "PROD-002",
+    "image": "Url.com",
+    "stock": 10,
+    "id": 4
+  }
+]
