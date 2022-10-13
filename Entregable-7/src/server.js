@@ -10,6 +10,9 @@ app.use("/api/products", routerProducts);
 
 app.use("/api/carrito", routerCart);
 
+app.all("*", (req, res) => {
+    res.status(404).json({message: "Path not found"})
+})
 
 
 
