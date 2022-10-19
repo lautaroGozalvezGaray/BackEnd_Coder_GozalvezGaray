@@ -1,0 +1,219 @@
+<div class="container w-50 p-3">
+
+    <div class="row mx-auto" >
+        <div>
+            <h1  style="color:blue; font-size: 30px;">Formulario de carga de productos</h1>
+        </div>
+
+        <form class="rounded" style="background-color: rgba(94, 169, 138, 1); justify-content: center;" id="form1" action="/products" method="post">
+            
+            <div class="mt-3">
+                <div class="mb-3">
+                
+                    <label for="title" class="form-label">Title: </label>
+                    <input type="text" name="title" class="form-control" aria-describedby="emailHelp" required id="title" required/>
+                
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">price: </label>
+                    <input type="number" name="price" id="price" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="thumbnail" class="form-label">thumbnail: </label>
+                <input type="url" name="thumbnail" id="thumbnail" class="form-control" aria-describedby="emailHelp" required />
+                </div>
+                <div id="messageEmpty">
+
+                </div>
+                <button id="submitProduct" type="submit" class="btn btn-primary b">Cargar</button>
+            </div>
+            
+            <div class="d-flex justify-content-center">
+                <h2 class="mt-4">Lista de productos</h2>
+            </div>
+            
+
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th >Nombre</th>
+                        <th >Precio</th>
+                        <th >Imagen</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    
+                </tbody>
+            
+            </table>
+
+            <div class="d-flex justify-content-center" id="whitoutProducts">
+
+            </div>
+        
+            
+            <br/>
+        
+        </form>
+    </div>
+    <br/><br/>
+
+
+    <div class="row mx-auto">
+        
+        <h2 style="color:blue; font-size: 30px;">Centro de mensajes</h2>
+
+
+        <form class="rounded" style="background-color: rgba(94, 169, 138, 1)">
+
+            <div>
+                <span style="font-size: 20px;"><u>Historial de mensajes:</u></span>
+                <br/>
+                <br/>
+                <ul class="rounded" style="background:rgb(223, 223, 223)" id="messages">
+
+                </ul>
+                <div class="d-flex justify-content-center" id="whitoutMessages">
+
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ingresá tu email" required>
+                
+            </div>
+            <div class="mb-3">
+                <label for="mensaje" class="form-label">Mensaje:</label>
+                <input type="text" class="form-control" id="mensaje" aria-describedby="emailHelp" placeholder="Ingresá tu mensaje" required>
+            </div>
+            <div id="emptyMessage">
+
+            </div>
+            <button type="submit" id="submitMensaje" class="btn btn-primary">Enviar</button>
+            <br/>
+            <br/>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    //se toman los elementos del html
+    const socket = io();
+    const btn = document.getElementById('submitProduct');
+    const btnMensaje = document.getElementById('submitMensaje');
+    
+    const inputTitle = document.getElementById('title');
+    const inputPrice = document.getElementById('price');
+    const inputImg = document.getElementById('thumbnail');
+    
+    //evento del boton de envio de mensajes
+    btnMensaje.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        const email = document.getElementById('email').value;
+        const mensaje = document.getElementById('mensaje').value;
+        
+        if (email !== '' && mensaje !== '') {
+        
+            socket.emit('nuevoMensaje', {
+                "email" : email,
+                "message" : mensaje,
+                "date" : new Date().toLocaleString()
+            })
+            const div = document.getElementById("emptyMessage");
+            div.remove();
+        }
+        else{
+            const div = document.getElementById("emptyMessage");
+            div.innerHTML = "<p style=color:red >Los campos deben estar completos</p>"
+        }
+
+        document.getElementById('email').value = "";
+        document.getElementById('mensaje').value = "";
+        
+    })
+    
+    //evento del boton de carga de productos
+    btn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        const title = inputTitle.value;
+        const price = inputPrice.value;
+        const img = inputImg.value;
+        
+        if(title !== '' && price !== '' && img !== '') {
+            socket.emit('productoAgregado',{
+                "title": title,
+                "price": price,
+                "thumbnail": img
+            })
+            const div = document.getElementById("messageEmpty");
+            div.remove();
+        }else{
+            const div = document.getElementById("messageEmpty");
+            div.innerHTML = "<p style=color:red >Los campos deben estar completos</p>"
+        }
+
+        document.getElementById('title').value = "";
+        document.getElementById('price').value = "";
+        document.getElementById('thumbnail').value ="";
+        
+    })
+    
+    //escucha la lista actualizada cuando se carga un mensaje del servidor y lo muestra en la plantilla
+    socket.on('listaMensajesActualizada', (data) => {
+        //console.log(data);
+        const mensasjes = data.map(item => `<li style= "color: brown ; list-style:none" > <b style= "color: blue">${item.email}</b>  [${item.date}]:  <i style= "color: green">${item.message}</i></li>`);
+        const ul = document.getElementById("messages");
+        ul.innerHTML=mensasjes.join("")
+        const div = document.getElementById("whitoutMessages");
+        div.remove();
+    })
+    
+    //escucha la lista de mensajes guardadas desde el servidor y los muestra
+    socket.on('listaMensajesBienvenida', (data) => {
+        console.log(data);
+        if(data.length>0){
+            const mensasjes = data.map(item => `<li style= "color: brown ; list-style:none" > <b style= "color: blue">${item.email}</b>  [${item.date}]:  <i style= "color: green">${item.message}</i></li>`);
+            const ul = document.getElementById("messages");
+            ul.innerHTML=mensasjes.join("")
+        }else{
+            const div = document.getElementById("whitoutMessages");
+            div.innerHTML = "<h4>No hay mensajes guardados</h4>"
+        }
+    })
+    
+    //escucha la lista actualizada de productos cuando se agrega uno del servidor y lo muestra en la plantilla
+    socket.on('listaActualizada', (data) => {
+
+        console.log(data)
+        const productos = data.map(item => `<tr> <td>${item.title}</td> <td>$${item.price}</td> <td><img src="${item.thumbnail}" height=30px></td> </tr>`);
+        const tbody = document.getElementById("table-body");
+        tbody.innerHTML=productos.join("")
+
+        const div = document.getElementById("whitoutProducts");
+        div.remove()
+    })
+    
+    //escucha la lista de productos guardadas desde el servidor y los muestra
+    socket.on('bienvenidoLista', (data) => {
+        console.log(data)
+        if(data.length>0){
+            const productos = data.map(item => `<tr> <td>${item.title}</td> <td>$${item.price}</td> <td><img src="${item.thumbnail}" height=30px></td> </tr>`);
+            const tbody = document.getElementById("table-body");
+            tbody.innerHTML=productos.join("")
+        }else{
+            const div = document.getElementById("whitoutProducts");
+            div.innerHTML = "<h3>No hay productos cargados</h3>"
+        }
+        
+        
+    })
+        
+
+</script>
