@@ -1,0 +1,33 @@
+0) use ecommerce
+
+1) ecommerce> db.createCollection("mensajes")
+   ecommerce> db.mensajes.insertMany([{10 objetos}])
+
+   ecommerce> db.createCollection("productos")
+   ecommerce> db.mensajes.insertMany([{10 objetos}])
+
+
+3) ecommerce> db.mensajes.find()
+   ecommerce> db.mensajes.find()
+
+4) ecommerce> db.mensajes.estimatedDocumentCount() 
+   ecommerce> db.productos.estimatedDocumentCount()
+
+5) a) ecommerce> db.productos.insertOne({})
+
+   b) 
+       iecommerce> db.productos.find({price: {$lt:1000}})
+       ii) ecommerce> db.productos.find({$and: [{price: {$gt:1000}}, {price: {$lt: 3000}} ]})
+       iii) ecommerce> db.productos.find({price: {$gt:1000}})
+       iiii) ecommerce> db.productos.find({},{_id:0, title:1}).skip(2).limit(1).sort({price:1})
+
+   c) ecommerce> db.productos.updateMany({}, {$set:{stock:100}})
+
+   d) ecommerce> db.productos.updateMany({price: {$gt:4000}}, {$set:{stock:0}})
+
+   e) ecommerce> db.productos.deleteMany({price: {$lt: 1000}})
+   
+6)ecommerce> db.createUser({user: "pepe", pwd:"asd456",roles: [{role: "read", db: "ecommerce"}]})
+
+
+   

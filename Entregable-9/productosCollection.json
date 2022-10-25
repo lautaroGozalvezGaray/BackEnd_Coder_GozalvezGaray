@@ -1,0 +1,73 @@
+[{
+  "_id": {
+    "$oid": "6357c7155261cf8edf137d4d"
+  },
+  "id": 1,
+  "title": "quam pede lobortis ligula sit amet eleifend pede",
+  "price": 4253.7,
+  "thumbnail": "21/06/2022",
+  "stock": 0
+},{
+  "_id": {
+    "$oid": "6357c7155261cf8edf137d4e"
+  },
+  "id": 2,
+  "title": "viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis",
+  "price": 3216.8,
+  "thumbnail": "19/01/2022",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6357c7155261cf8edf137d4f"
+  },
+  "id": 3,
+  "title": "erat curabitur gravida nisi at nibh",
+  "price": 2316.8,
+  "thumbnail": "14/03/2022",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6357c7155261cf8edf137d50"
+  },
+  "id": 4,
+  "title": "pede malesuada in imperdiet et",
+  "price": 1041.6,
+  "thumbnail": "23/02/2022",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6357c7155261cf8edf137d51"
+  },
+  "id": 5,
+  "title": "neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros",
+  "price": 3416.2,
+  "thumbnail": "09/08/2022",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6357c7155261cf8edf137d52"
+  },
+  "id": 6,
+  "title": "sapien varius ut blandit non",
+  "price": 4840.4,
+  "thumbnail": "19/01/2022",
+  "stock": 0
+},{
+  "_id": {
+    "$oid": "6357c7155261cf8edf137d53"
+  },
+  "id": 7,
+  "title": "at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus",
+  "price": 2735.7,
+  "thumbnail": "31/07/2022",
+  "stock": 100
+},{
+  "_id": {
+    "$oid": "6357c7155261cf8edf137d54"
+  },
+  "id": 8,
+  "title": "integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam",
+  "price": 4034.6,
+  "thumbnail": "10/11/2021",
+  "stock": 0
+}]
