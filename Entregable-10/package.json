@@ -1,0 +1,19 @@
+{
+  "name": "entregable-10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "LautaroGozalvez",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.2.0",
+    "moment": "^2.29.4",
+    "mongoose": "^6.7.0",
+    "nodemon": "^2.0.20"
+  }
+}
