@@ -1,18 +1,23 @@
 const {MONGO_URL} = require("../config/config");
+const mongoose = require('mongoose');
+
 module.exports = class MongoDbContainer{
     constructor(model){
         this.model=model;
         this.connect();
     }
 
-    connect(){
+    async connect(){
         try {
+            
             const URL = MONGO_URL; //para mongodb local
-            mongoose.connect(URL, {useNewUrlParser: true, useUnifiedTopology:true })
+            console.log("url " + URL);
+            mongoose.connect("mongodb://localhost:27017/ecommerce", {useNewUrlParser: true, useUnifiedTopology:true })
             console.log("base de datos conectada");
         } catch (error) {
             console.log(error);
         }
+        
     }
 
     async exists(id) {
@@ -37,7 +42,7 @@ module.exports = class MongoDbContainer{
             const product = await this.model.findOne({
                 _id : objectId
             })
-            console.log(product);
+            //console.log(product);
             return product;
         } catch (error) {
             console.log(error);
@@ -65,9 +70,9 @@ module.exports = class MongoDbContainer{
 
     async updateById(id, data){
         try {
-            await Usuarios.updateOne({_id:id}, {$set:data})
+            return await this.model.updateOne({_id:id}, {$set:data});
         } catch (error) {
-            
+            console.log(error);
         }
     }
 

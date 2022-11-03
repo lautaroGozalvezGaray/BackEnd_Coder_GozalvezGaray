@@ -4,7 +4,7 @@ const cartsSchema = new Schema({
     timestrap:{type: Date, default:Date.now},
     products:[
         {
-            type: Schema.type.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "products"
         }
     ]

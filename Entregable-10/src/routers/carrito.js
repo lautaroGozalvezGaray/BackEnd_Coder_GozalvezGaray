@@ -1,9 +1,12 @@
 const express = require("express");
 const moment = require("moment");
 
-const {CartDaoMongoDb} = require("../daos/carts/cartDaoMongoDb");
+const CartDaoMongoDb = require("../daos/carts/cartDaoMongoDb");
+const ProductsDaoMongoDb = require("../daos/products/productsDaoMongoDb");
 
 const carrito = new CartDaoMongoDb();
+
+const product = new ProductsDaoMongoDb();
 
 
 const routerCart = express.Router();
@@ -26,7 +29,7 @@ routerCart.post("/", async(req, res) => {
         const newCart = await carrito.save(body);
         console.log(newCart);
         newCart
-          ? res.status(200).json({success : "cart added with ID: "+ newCart})
+          ? res.status(200).json({success : "cart added with ID: "+ newCart._id})
           : res.json({mensaje: "There are no products"});
           
 
@@ -75,14 +78,15 @@ routerCart.get("/:id/products", async(req, res) => {
 //AGREGAR UN PRODUCTO MEDIANTE ID(TOMADO DEL BODY) AL CARRTIO MEDIANTE SU ID
 routerCart.post("/:id/products", async(req, res) => {
     const {id}= req.params;
-    const {products} = req;
+    const {body} = req;
 
-    //const product = await products.getById(body.id)
+    const newProducts = await product.getById(body.id)
+    console.log(newProducts);
 
     try {
-        if(products){
-            let productAdded = await carrito.updateById(id, { products: products })
-
+        if(newProducts){
+            let productAdded = await carrito.updateById(id, { products: newProducts })
+            console.log(productAdded);
             productAdded
             ? res.status(200).json({Success: "Product added"})
             : res.status(404).json({error: "there was a problem adding the product"})
@@ -106,7 +110,7 @@ routerCart.delete("/:id/products/:id_prod", async(req, res) => {
 
     try {
         const deleteProduct = await carrito.deleteProductFromCart(id, id_prod);
-
+        console.log(deleteProduct);
         deleteProduct
         ? res.status(200).json({Success: "Product succesfully deleted"})
         : res.status(404).json({error: "there was a problem deleting the product"})

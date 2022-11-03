@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {ProductsDaoMongoDb} = require("../daos/products/productsDaoMongoDb");
+const ProductsDaoMongoDb = require("../daos/products/productsDaoMongoDb");
 
 const contenedor = new ProductsDaoMongoDb();
 
@@ -94,7 +94,7 @@ routerProducts.put("/:id", async(req, res) => {
         try {
 
             await contenedor.updateById(id, body);
-            res.status(200).json({error: `Product whit ID : ${id} was modified successfully`});
+            res.status(200).json({message: `Product whit ID : ${id} was modified successfully`});
 
         } catch (error) {
             console.log("erorr: " + err.message);

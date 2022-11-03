@@ -23,7 +23,6 @@ const productsSchema = new Schema({
         type: String,
         required: true,
         max: 6,
-        unique: true
     },
     image: {
         type: String,
