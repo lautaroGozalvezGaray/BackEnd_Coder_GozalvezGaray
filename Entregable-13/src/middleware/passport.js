@@ -5,7 +5,6 @@ const bCrypt = require('bcrypt');
 const users = new User();
 
 const LocalStrategy = require('passport-local').Strategy;
-console.log(users)
 
 function createHash(password) {
     return bCrypt.hashSync(
@@ -21,12 +20,10 @@ function isValidPassword(user, password) {
 
    
 const initPassport = () => {
-    passport.use('login', new LocalStrategy( (username, password, done) => {
-            console.log('login', users)
-            // if (err)
-            //   return done(err);
-
-            let user = users.getAll( user => user.username === username ) 
+    passport.use('login', new LocalStrategy( async(username, password, done) => {
+            
+            const allUsers = await users.getAll();
+            let user = allUsers.find( user => user.username === username ) 
     
             if (!user) {
             console.log('User Not Found with username ' + username);
@@ -36,7 +33,7 @@ const initPassport = () => {
             if (!isValidPassword(user, password)) {
                console.log('Invalid Password');
                return done(null, false);
-             }
+            }
     
             return done(null, user);
         })
@@ -46,22 +43,21 @@ const initPassport = () => {
     passport.use('signup', new LocalStrategy({
             passReqToCallback: true
         },
-        (req, username, password, done) => {
-            let user = users.find(u => u.username === username)
+        async(req, username, password, done) => {
+            console.log(username);
+            const allUsers = await users.getAll();
+            let user = allUsers.find(u => u.username === username)
             console.log('register', users)
             
             if (user) {
                 console.log('User already exists');
                 return done(null, false, { message: 'User already exists' })
             }
-
-            // 
-
             const { admin } = req.body
             
             const newUser = {
-                id: users.length + 1,
-                username,
+                id: allUsers.length + 1,
+                username: username,
                 password: createHash(password),
                 admin
             }
@@ -76,9 +72,9 @@ const initPassport = () => {
         done(null, user.id);
     })
 
-    passport.deserializeUser((id, done) => { // toma el id que esta en las sessiones 
-        console.log(users)
-        let user = users.find(user => user.id === id)
+    passport.deserializeUser(async(id, done) => { // toma el id que esta en las sessiones 
+        const allUsers = await users.getAll();
+        let user = allUsers.find(user => user.id === id)
         done(null, user)
     })
 

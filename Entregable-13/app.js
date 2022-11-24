@@ -44,7 +44,7 @@ app.use(session({
     cookie: {
         httpOnly: false,
         secure: false,
-        maxAge: 1000 * 60 * 60 * 24
+        maxAge: 6000
     },
     secret: process.env.SECRET_KEY_SESSION,
     resave:true,

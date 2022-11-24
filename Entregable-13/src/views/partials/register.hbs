@@ -4,11 +4,11 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-4"></div>
-                <h2>inicio de sesion</h2>
+                <h2>Registro de usuario</h2>
                 <div class="col-md-4  border border-1 border-primary mt-5 rounded">
-                    <form action="/api/session/login" method="POST" class="m-5">
+                    <form action="/api/session/register" method="POST" class="m-5">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
+                            <label for="exampleInputEmail1">username</label>
                             <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter username">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
@@ -23,10 +23,11 @@
                         </div>
                         </br>
                         </br>
-                        <a href="/api/session/register" class="btn btn-primary">ir al register</a>      
-                                                 
+                        <a href="/api/session/login" class="btn btn-primary">ir al Login</a>                         
                     </form>
                 </div>
+
+
                 <div class="col-md-4"></div>
             </div>
         </div>
