@@ -1,0 +1,51 @@
+Resolución
+Se realizó directamente con pm2 ya que este por parámetro permite recibir si se desea que sea modo fork o modo cluster.
+Generamos 4 clusters en 8082, 8083, 8084 y 8085
+
+╰─>$ pm2 start server.js  --name="ClusterEn8082" --watch -i 2  -- -p 8082
+
+╰─>$ pm2 start server.js  --name="ClusterEn8083" --watch -i 2  -- -p 8083
+
+╰─>$ pm2 start server.js  --name="ClusterEn8084" --watch -i 2  -- -p 8084
+
+╰─>$ pm2 start server.js  --name="ClusterEn8085" --watch -i 2  -- -p 8085
+
+
+╰─>$ pm2 list
+┌─────┬──────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬
+│ id  │ name             │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      
+├─────┼──────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────
+│ 0   │ ClusterEn8082    │ default     │ 1.0.0   │ cluster │ 17066    │ 48s    │ 1    │ online    │ 0%       │ 70.0mb   
+│ 1   │ ClusterEn8082    │ default     │ 1.0.0   │ cluster │ 17072    │ 48s    │ 1    │ online    │ 0%       │ 70.2mb   
+│ 2   │ ClusterEn8083    │ default     │ 1.0.0   │ cluster │ 17084    │ 48s    │ 1    │ online    │ 0%       │ 69.5mb   
+│ 3   │ ClusterEn8083    │ default     │ 1.0.0   │ cluster │ 17078    │ 48s    │ 1    │ online    │ 0%       │ 69.6mb   
+│ 4   │ ClusterEn8084    │ default     │ 1.0.0   │ cluster │ 17259    │ 37s    │ 0    │ online    │ 0%       │ 70.6mb   
+│ 5   │ ClusterEn8084    │ default     │ 1.0.0   │ cluster │ 17266    │ 37s    │ 0    │ online    │ 0%       │ 70.7mb   
+│ 6   │ ClusterEn8085    │ default     │ 1.0.0   │ cluster │ 17368    │ 30s    │ 0    │ online    │ 0%       │ 70.5mb   
+│ 7   │ ClusterEn8085    │ default     │ 1.0.0   │ cluster │ 17375    │ 30s    │ 0    │ online    │ 0%       │ 71.1mb   
+└─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────
+
+Configuration de nginx
+events {
+}
+
+http {
+
+    upstream backend {
+        server 127.0.0.1:8082;
+        server 127.0.0.1:8083;
+        server 127.0.0.1:8084;
+        server 127.0.0.1:8085;
+    }
+    server {
+        listen 8080;
+        location /info/random/ {
+            proxy_pass http://backend/info/randoms/;
+        }
+    }
+
+}
+
+
+
+
