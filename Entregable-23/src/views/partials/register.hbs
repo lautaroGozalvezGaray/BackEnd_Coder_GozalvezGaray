@@ -1,0 +1,61 @@
+<!-- formulario de login con bootstrap -->
+    <div>
+        <!-- formulario con bootstrap -->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <h2>Registro de usuario</h2>
+                <div class="col-md-4  border border-1 border-primary mt-5 rounded">
+                    <form action="/api/session/register" method="POST" class="m-5">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">username</label>
+                            <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter username">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Name</label>
+                            <input type="text" name="name" class="form-control" id="exampleInputPassword1" placeholder="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Adress</label>
+                            <input type="text" name="adress" class="form-control" id="exampleInputPassword1" placeholder="adress">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Age</label>
+                            <input type="number" name="age" class="form-control" id="exampleInputPassword1" placeholder="age">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Phone number</label>
+                            <input type="number" name="phone" class="form-control" id="exampleInputPassword1" placeholder="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">avatar</label>
+                            <input type="text" name="avatar" class="form-control" id="exampleInputPassword1" placeholder="avatar">
+                        </div>
+
+                        
+                        </br>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        </br>
+                        </br>
+                        <a href="/api/session/login" class="btn btn-primary">ir al Login</a>                         
+                    </form>
+                </div>
+
+
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </div>
